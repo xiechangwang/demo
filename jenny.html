@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+		<script src="http://mockjs.com/dist/mock.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<el-radio-group v-model="tabPosition" style="margin-bottom: 30px;">
+					<el-radio-button label="cSystem">公制</el-radio-button>
+					<el-radio-button label="eSystem">英制</el-radio-button>
+				</el-radio-group>
+
+			</div>
+			<div>
+				<el-table :data="tableData" border style="width: 100%">
+					<el-table-column prop="ContainerNo" label="ContainerNo">
+					</el-table-column>
+					<el-table-column prop="ContainerNo" label="ContainerNo">
+					</el-table-column>
+					<el-table-column prop="Packages" label="Packages">
+					</el-table-column>
+					<el-table-column prop="Len" label="Len">
+					</el-table-column>
+					<el-table-column prop="Width" label="Width">
+					</el-table-column>
+					<el-table-column prop="Height" label="Height">
+					</el-table-column>
+					<el-table-column fixed="right" label="操作" width="120">
+						<template slot-scope="scope">
+							<el-button @click.native.prevent="deleteRow(scope, tableData)" type="text" size="small">
+								移除
+							</el-button>
+						</template>
+					</el-table-column>
+				</el-table>
+			</div>
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			data: {
+				tabPosition: 'left',
+				tableData: []
+			},
+			created() {
+				var that = this;
+				var testPath='http://www.bai.com',
+					testMethod='get';
+					
+				var temp={
+					'list|10':[
+						{
+							'id|+1':1,
+							'ContainerNo':'SG11112',
+							'SealNo':'5556666',
+							'Packages':1,
+							'Len':56.56,
+							'Width':36.5,
+							'Height':23.8
+						}
+					]
+				}	
+				Mock.mock(testPath,testMethod,temp)
+
+				// 发送 POST 请求
+				axios.get('http://www.bai.com').then(function(res) {
+					console.log(res);
+					if (res.status == 200) {
+						that.tableData = res.data.list;
+					}
+				});
+			},
+			methods: {
+				deleteRow(scope, rows) {
+					console.log(scope.row);
+				}
+			}
+		}).$mount('#app');
+	</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+			<sub1></sub1>
+		</div>
+	</body>
+	<script>
+		Vue.component('sub2',{
+			template:`<div>
+					{{name2}}
+					<button @click="btnClick">click</button>
+					</div>`,
+					data(){
+						return{
+							name2:'22222222'
+						}
+					},
+					inject:['detail'],
+					mounted() {
+						console.log(this.detail.title)
+					},
+					methods:{
+						btnClick(){
+							this.detail.change('孙子组件触发了事件')
+						}
+					}
+		})
+		
+		Vue.component("sub1",{
+			template:`<div class="sub_warpper">
+						{{name}}
+						<sub2/>	
+					</div>`,
+			data(){
+				return{
+					name:"45645646456"
+				}
+			}		
+		});
+		
+		var vm=new Vue({
+			data:{
+				msg:"123"
+			},
+			provide(){
+				return{
+					detail:{
+						title:'wo shi tou bu biao ti',
+						change:(val)=>{
+							console.log('-----'+val);	
+						}
+					}
+				}
+			},
+			mounted() {
+				console.log(this.detail)
+			}
+		}).$mount('#app');
+	</script>
+</html>

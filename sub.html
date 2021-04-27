@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			123123123
+			<button type="button" onclick="openPage()">open</button>
+		</div>
+	</body>
+	<script>
+		function openPage(){
+			// parent.open('https://www.baidu.com');
+			var obj={
+				url:'https://www.baidu.com',
+				type:'openPage'
+			}
+			console.log(window.loaction.host)
+			window.parent.postMessage(obj,'http://127.0.0.1:8848/demo/parent.html');
+		}
+	</script>
+</html>

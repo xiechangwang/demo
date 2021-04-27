@@ -1,0 +1,47 @@
+<html>
+<input type="file" id="video_file"/>
+<button id="capture">Capture</button>
+<div id="output">
+</div>
+</html>
+<script>
+var capture = document.getElementById('capture');
+capture.onclick = function(){
+	var obj_file = document.getElementById("video_file");
+	var file = obj_file.files[0];
+	var URL = window.URL || window.webkitURL
+    var video = document.createElement('video');
+	video.src = URL.createObjectURL(file);
+	var cur = 20;
+	var limit = 10;//每隔100秒截图
+	var i = 0;
+	video.addEventListener('canplay', function() {
+		limit = video.duration / 7;
+		if(cur > video.duration){
+			return;
+		}
+		video.currentTime = cur;
+		cur += limit;
+		var canvas = document.createElement('canvas');
+		var context = canvas.getContext('2d');
+		canvas.setAttribute('width', video.videoWidth);
+		canvas.setAttribute('height', video.videoHeight);
+		context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, video.videoWidth, video.videoHeight);
+	    var base64ImageData = canvas.toDataURL('image/jpeg');
+	    video.setAttribute("poster",base64ImageData);
+		if(i++ != 0){
+		var output = document.getElementById('output');
+		var imgId = new Date().getTime();
+		  var img = document.createElement('img');
+		  img.setAttribute('src', base64ImageData);
+		  img.setAttribute('width', '300px');
+		  img.setAttribute('height', '200px');
+		  
+		  output.appendChild(img);
+		  }
+		
+    });
+
+  
+}
+</script>

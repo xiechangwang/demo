@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		//设置Cookie
+		function setCookie(name, value, lostTime, path) {
+			//首先判断用户传入参数的个数，至少传入2个参数
+			if (arguments.length == 2) {
+				document.cookie = name.trim() + "=" + value.trim(); //直接设置
+			} else if (arguments.length == 3) {
+				var ifLp = typeof(arguments[2]); //需要判断用户输入的第三个参数类型
+				if (ifLp == "number") {
+					var Cookietime = new Date();
+					Cookietime.setDate(Cookietime.getDate()) + lostTime;	//毫秒时间戳
+					document.cookie = name.trim() + '=' + value.trim() + ';expires=' + Cookietime; //设置自定义时间的Cookie
+				} else {
+					document.cookie = name.trim() + "=" + value.trim() + ";path=" + arguments[2]; //设置自定义地址的Cookie}
+				}
+			} else {
+				var Cookietime = new Date();
+				Cookietime.setDate(Cookietime.getDate()) + lostTime;
+				document.cookie = name + '=' + value + ';expires=' + Cookietime + ";path=" + path; //设置全部自定义属性的Cookie
+			}
+		}
+		//获取Cookie
+		function getCookie(name) {
+			var arr = document.cookie.split(';');
+			for (var i = 0; i<arr.length;i++){
+				var arr2 = arr[i].split('=');
+				if (arr2[0].trim() == name) {
+					return arr2[1];
+				}
+			}
+			return '';
+		}
+
+		//删除Cookie
+		function removeCookie(name, path) {
+			if (path) {
+				setCookie(name, 1, -1, path);
+			} else {
+				setCookie(name, 1, -1);
+			}
+		}
+
+
+		// 测试
+		setCookie("name","zhang",10000);
+		setCookie("name1","lisi");
+		var name=getCookie("name");
+		var	name1=getCookie("name1");
+		console.log(name);
+		console.log(name1);
+	</script>
+</html>

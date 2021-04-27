@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		// let  result = [];
+		// for(let i=0,len=oldBannerList.length;i<len;i+=3){
+		//     result.push(oldBannerList.slice(i,i+3));
+		// }
+		var arr=[
+			{img:'1'},
+			{img:'2'},
+			{img:'3'},
+			{img:'4'},
+			{img:'5'},
+			{img:'6'},
+			{img:'7'},
+			{img:'8'},
+			{img:'9'},
+			{img:'10'},
+			{img:'11'},
+			{img:'12'},
+			{img:'13'},
+		],
+		    newArr = [],
+		    b;
+		arr.forEach(function(item, index) {
+		    var a = Math.floor(index / 3);
+		    if (b !== a) {
+		        b = a;
+		        newArr[a] = new Array();
+		    }
+		    newArr[a].push(item);         
+		});
+		// console.log(newArr)
+	</script>
+</html>

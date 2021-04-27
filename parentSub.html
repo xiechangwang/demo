@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div>{{msg}}</div>
+			<button @click="parentClick">按钮</button>
+			<runoob ref="subDom" v-bind:mess_Age="parentMsg"></runoob>
+		</div>
+		
+	</body>
+	<script src="js/vue.min.js"></script>
+	<script>
+		// 注册
+		Vue.component('runoob', {
+			props:['mess_age'],
+		  template: '<h1>自定义组件!<span>{{name}}</span></h1>',
+		  data:function(){
+			  return{
+				  name:"456464",
+				  
+			  }
+		  },
+		  created() {
+			console.log(this.mess_age)	
+		  },
+		  methods:{
+			  handleClick:function(){
+				  alert('4564654')
+				  console.log(this.mess_age)
+			  }
+		  }
+		})
+		// 创建根实例
+		new Vue({
+		  el: '#app',
+		  data:{
+			  msg:'12313131',
+			  parentMsg:"sdasdasd"
+		  },
+		  methods:{
+			  parentClick:function(){
+				  console.log(this.$refs.subDom);
+				  this.$refs.subDom.handleClick();
+			  }
+		  }
+		})
+	</script>
+</html>

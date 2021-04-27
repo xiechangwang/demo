@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		// function add(a){
+		// 	return function(b){
+		// 		return function(c){
+		// 			return a+b+c
+		// 		}
+		// 	}
+		// };
+		// var add=(a)=>(b)=>(c)=>a+b+c;
+		function add(){
+			var arrs=Array.prototype.slice.call(arguments);
+			var _arrs=function(){
+				var newArrs=[...arguments];
+				arrs.push(...newArrs);
+				return _arrs
+			}
+			_arrs.toString=function(){
+				return arrs.reduce(function(a,b){
+					return a+b
+				})
+			}
+			return _arrs;
+		}
+		console.log(add(1)(2)(3)(5,4))
+	</script>
+</html>

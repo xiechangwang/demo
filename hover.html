@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./js/jquery.js"></script>
+		<style>
+			html,body{
+				margin: 0;
+				padding: 0;
+			}
+			.aa{
+				width: 200px;
+				height: 60px;
+				line-height: 60px;
+				background-color: antiquewhite;
+			}
+			.sub{
+				width: 200px;
+				height: 80px;
+				background-color: #BBBBBB;
+				position: absolute;
+				top: 80px;
+				left: 0;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aa">
+			aaaaa
+		</div>
+		<div class="sub">
+			12312121
+		</div>
+	</body>
+	<script async="async">
+		var tm;
+		var type=false;
+		$(".aa").hover(function(){
+			if(tm){
+				clearTimeout(tm);
+			}
+			type=true;
+			showOrHide();
+		},function(){
+			type=false;
+			tm=setTimeout(function(){
+				showOrHide();
+			},300);
+		});
+		$(".sub").hover(function(){
+			type=true;
+			showOrHide();
+		},function(){
+			type=false
+			tm=setTimeout(function(){
+				showOrHide();
+			},300);
+		})
+		
+		function showOrHide(){
+			if(type){
+				$(".sub").show();
+			}else{
+				$('.sub').hide();
+			}
+		}
+	</script>
+</html>

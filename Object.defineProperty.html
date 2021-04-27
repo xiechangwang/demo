@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		let vm={
+			id:'jianshu',
+			name:'简书'
+		}
+		let keys=Object.keys(vm);
+		keys.forEach(key=>{
+			let value=vm[key];
+			Object.defineProperty(vm,key,{
+				get(){
+					console.log('执行get');
+					return value
+				},
+				set(newVal){
+					console.log('执行set');
+					if(newVal!==value){
+						value=newVal
+					}
+				}	
+			})
+		})
+		vm.id='test';
+		console.log(vm)
+	</script>
+</html>

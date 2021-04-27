@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div style="height: 100vh;">
+			<div>
+				<label>防抖:</label>
+				<input onkeyup="search()" class="number_one" />
+			</div>
+			<div>
+				<label>节流:</label>
+				<input onkeyup="search1()" class="number_tow"/>
+			</div>
+		</div>
+	</body>
+	<script>
+		function debounce(func, ms = 1000 , val) {
+		  let timer;
+		  return function (...args) {
+		    if (timer) {
+		      clearTimeout(timer)
+		    }
+		    timer = setTimeout(() => {
+		      func.apply(this, args)
+		    }, ms)
+		  }
+		}
+		
+		// 测试
+		const task = (...args) => { console.log(args[0]) }
+		const debounceTask = debounce(task, 1000)
+		function search(){
+			var val=document.getElementsByClassName('number_one')[0].value;
+			debounceTask(val);
+		}
+		/* 
+		节流 
+		 */
+		function throttle(func, ms = 1000) {
+		  let canRun = true
+		  return function (...args) {
+		    if (!canRun) return
+		    canRun = false
+		    setTimeout(() => {
+		      func.apply(this, args)
+		      canRun = true
+		    }, ms)
+		  }
+		}
+		
+		// 测试
+		const task1 = () => { 
+			var val=document.getElementsByClassName('number_tow')[0].value;
+			console.log(val) 
+		}
+		const throttleTask = throttle(task1, 1000)
+		function search1(){
+			throttleTask();
+		}
+	</script>
+</html>

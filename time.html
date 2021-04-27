@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<span class="time" onclick="getTime()">倒计时</span>
+	</body>
+	<script type="text/javascript">
+		let oSapn = document.getElementsByClassName('time')[0];
+		window.onload = function() {
+			if (JSON.parse(localStorage.getItem('oldTime'))) {
+				let newDateTime = Math.round(new Date() / 1000);
+				let getOldTime = JSON.parse(localStorage.getItem('oldTime'));
+				if(newDateTime - getOldTime>=60){
+					localStorage.removeItem('oldTime');
+				}else{
+					timeAdd(60 - (newDateTime - getOldTime));
+				};
+			}
+		};
+
+		function getTime() {
+			timeAdd();
+			let oldDateTime = Math.round(new Date() / 1000);
+			localStorage.setItem('oldTime', JSON.stringify(oldDateTime));
+		}
+
+		function timeAdd(myTime) {
+			let time = myTime ? myTime : 60,
+				flag = true;
+			let timer = setInterval(function() {
+				if (time == 60 && flag) {
+					flag = false;
+				} else if (time == 0) {
+					localStorage.removeItem('oldTime');
+					clearInterval(timer);
+					flag = true;
+					time = 60;
+					oSapn.innerText = '倒计时';
+				} else {
+					time--;
+					oSapn.innerText = time;
+				}
+
+			}, 1000)
+		}
+	</script>
+</html>

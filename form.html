@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<h5>文件上传</h5><hr/>
+			<form method="POST" action="" name="form" enctype="multipart/form-data">
+			　　<input type="text" name="userid" value=""/>
+			　　<input type="text" name="companyid" value=""/>
+			　　<input type="file" name="file"/>
+			　　<input type="submit" class="upload" value="上传"/>
+			</form>
+		</div>
+	</body>
+	<script type="text/javascript">
+	//         $(".upload").click(function(){
+	//             //通过FormData对象 异步提交文件 返回提交结果
+	//             var img = document.form.file.files[0];
+	//             var companyid = $("[name='companyid']").val();
+	//             var userid = $("[name='userid']").val();
+	//             var fm = new FormData();
+	//             fm.append('file', img);
+	//             fm.append('userid', userid);
+	//             fm.append('companyid', companyid);
+	//             var url = saasurl+"/management/uploadFile";
+	//             $.ajax({
+	//                 url:url,
+	//                 cache:false,
+	//                 type:"POST",
+	//                 data:fm,
+	//                 headers:{"X-usertoken":sessionStorage.getItem("token")},
+	//                 processData:false,
+	//                 contentType:false,
+	//                 success:function(xhr){
+	                    
+	
+	//                 }
+	//             })
+	//         });
+	</script>
+</html>

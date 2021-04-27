@@ -1,0 +1,1 @@
+console.log('这是a1里面的list',list);

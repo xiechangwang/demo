@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+	</head>
+	<style type="text/css">
+		.vue {
+			margin-left: 100px;
+			position: relative;
+			width: 300px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			color: #fff;
+		}
+
+		.vue::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			content: '';
+			background: linear-gradient(270deg, rgba(0, 165, 230, 1), rgba(68, 210, 245, 1));
+			z-index: -1;
+			transform: skewX(-10deg);
+			border-radius: 5px;
+		}
+	</style>
+	<body>
+		<div>
+			<button type="button">分享</button>
+			<img src="./img/yanying.svg" style="font-size: 80px;">
+		</div>
+		<div class="vue"> Vue前端技术</div>
+		<button onclick="btn()">excel</button>
+	<script>
+		// var btn = document.getElementsByTagName('button')[0].onclick = function() {
+		// var url = 'http://www.baidu.com';
+		// var title = '我的名字哦';
+		// var picurl = 'http://img.t.sinajs.cn/t5/skin/public/profile_cover/001.jpg';
+		// //微博分享
+		// var sharesinastring='http://v.t.sina.com.cn/share/share.php?title='+title+'&url='+url+'&content=utf-8&sourceUrl='+url+'&pic='+picurl;
+		// window.open(sharesinastring,'newwindow','height=400,width=400,top=100,left=100');
+		// var target_url =
+		// 	"http://qr.liantu.com/api.php?text=http://www.baidu.com&logo=http://a.hiphotos.baidu.com/image/h%3D300/sign=cb60c5d972f0f736c7fe4a013a54b382/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg";
+		// window.open(target_url, 'weixin', 'height=320, width=320');
+		// }
+
+		//获取章节列表
+		//    function GetChaptersList(flag,parentid) {
+		//     var taskid,parentId,directoryName,type,sort,courseCatalogueList;
+		//     var param = {
+		//      "courseId": courseId
+		//     };
+		//     $.ajax({
+		//      type: "post",
+		//      url: content + "/course/getCourseCatalogueListForTree",
+		//      data: JSON.stringify(param),
+		//      headers: {
+		//       "Content-Type": "application/json",
+		//                  "sessionToken": token
+		//      },
+		//      dataType: "json",
+		//      success: function(obj) {
+		//       if (obj.status == 0) {
+		//        var courseCatalogueList = obj.result;
+		//        var html = "";
+		//        var str = "";
+		//        if (courseCatalogueList == null || courseCatalogueList.length == 0) {
+		//         html += "<option value='0'>--无目录--</option>";
+		//        } else {
+		//         $.each(courseCatalogueList, function(i, item) {
+		//          taskid = item.id;
+		//          directoryName = item.directoryName;
+		//          type = item.type;
+		//          if(type==2){
+		//              if(taskid == parentid){
+		//               html += "<option value='"+taskid+"' selected>"+directoryName+"</option>";
+		//               str += "<option value='"+taskid+"' selected>"+directoryName+"</option>";
+		//              }else{
+		//               html += "<option value='"+taskid+"'>"+directoryName+"</option>";
+		//               str += "<option value='"+taskid+"'>"+directoryName+"</option>";
+		//              }
+		//           }
+		//           if(type==3){
+		//            if(taskid == parentid){
+		//             str += "<option value='"+taskid+"' selected>|--"+directoryName+"</option>";
+		//            }else{
+		//             str += "<option value='"+taskid+"'>|--"+directoryName+"</option>";
+		//            }
+		//           }
+		//         });
+		//        }
+		//        if(flag=='2'){
+		//         $('#chaptParent').empty();
+		//         $('#chaptParent').append(html);
+		//                      }else{
+		//         $('#taskParent').empty();
+		//         $('#taskParent').append(str);                
+		//                      }
+		//                      form.render();
+		//       } else {
+		//        layer.msg(obj.msg, {
+		//         icon: 2,
+		//         time: 1500
+		//        });
+		//       }
+		//      },
+		// 
+		//     });
+		//    }
+
+
+		// 		var tree = [{
+		// 			label: 'aaaa',
+		// 			children: [{
+		// 				label: 'bbbb',
+		// 				children: [{
+		// 					label: 'cccc'
+		// 				}]
+		// 			}]
+		// 		}, {
+		// 			label: 'aaaa 2',
+		// 			children: [{
+		// 				label: 'bbbb 2-1',
+		// 				children: [{
+		// 					label: 'cccc 2-1-1'
+		// 				}]
+		// 			}, {
+		// 				label: 'bbbb 2-2',
+		// 				children: [{
+		// 					label: 'cccc 2-2-1'
+		// 				}]
+		// 			}]
+		// 		}, {
+		// 			label: 'aaaa 3',
+		// 			children: [{
+		// 				label: 'bbbb 3-1',
+		// 				children: [{
+		// 					label: 'cccc 3-1-1'
+		// 				}]
+		// 			}, {
+		// 				label: 'bbbb 3-2',
+		// 				children: [{
+		// 					label: 'cccc 3-2-1'
+		// 				}]
+		// 			}]
+		// 		}];
+		// 
+		// 		var obj = [{
+		// 			name: 1,
+		// 			arrs: []
+		// 		}, {
+		// 			name: 2,
+		// 			arrs: []
+		// 		}, {
+		// 			name: 3,
+		// 			arrs: []
+		// 		}];
+		// 		var arr2 = [],
+		// 			arr3 = []
+		// 
+		// 		function serverArray(arr) {
+		// 			for (var i = 0; i < arr.length; i++) {
+		// 				obj[0].arrs.push({
+		// 					value: arr[i].label
+		// 				});
+		// 				arr2.push(...arr[i].children);
+		// 			}
+		// 			for (var i = 0; i < arr2.length; i++) {
+		// 				obj[1].arrs.push({
+		// 					value: arr2[i].label
+		// 				});
+		// 				arr3.push(...arr2[i].children);
+		// 			}
+		// 			for (var i = 0; i < arr3.length; i++) {
+		// 				obj[2].arrs.push({
+		// 					value: arr3[i].label
+		// 				});
+		// 			}
+		// 		}
+		// 		serverArray(tree);
+		// 		console.log(obj);
+
+
+		// var a = [{
+		// 	"id": "0000",
+		// 	"text": "R1",
+		// 	"children": [{
+		// 		"id": "8978",
+		// 		"text": "Aad",
+		// 		"children": [{
+		// 			"id": "2312",
+		// 			"text": "adaada",
+		// 			"children": [{
+		// 				"id": "5154",
+		// 				"text": "asdsa"
+		// 			}]
+		// 		}, {
+		// 			"id": "4544",
+		// 			"text": "afasf",
+		// 			"children": [{
+		// 				"id": "5236",
+		// 				"text": "afasf"
+		// 			}, {
+		// 				"id": "2328",
+		// 				"text": "afasf"
+		// 			}]
+		// 		}]
+		// 	}, {
+		// 		"id": "7867",
+		// 		"text": "R2",
+		// 		"children": [{
+		// 			"id": "8767",
+		// 			"text": "afasf",
+		// 			"children": [{
+		// 				"id": "2016",
+		// 				"text": "afafa"
+		// 			}, {
+		// 				"id": "2017",
+		// 				"text": "afasd"
+		// 			}]
+		// 		}, {
+		// 			"id": "7657",
+		// 			"text": "h",
+		// 			"children": [{
+		// 				"id": "7867",
+		// 				"text": "afras"
+		// 			}]
+		// 		}]
+		// 	}]
+		// }];
+
+		// function GetSubJson(jsonData, destID, json) {
+		// 	for (var i = 0; i < jsonData.length; i++) {
+		// 		// if (jsonData[i].id == destID)
+		// 			json.push(jsonData[i].id);
+		// 		// else {
+		// 			if (jsonData[i].hasOwnProperty("children")) {
+		// 				GetSubJson(jsonData[i].children, destID, json);
+		// 			}
+		// 		// }
+		// 	}
+		// }
+		//例如
+		// var json = [];
+		// GetSubJson(a, "0000", json);
+		// console.log(json);
+
+
+
+
+		// var json={
+		// 	lable:"aa'",
+		// 	value:"aaaa'"
+		// }
+		// json.forEach(course,function(item){
+		// 	console.log(item)	
+		// })
+		// var arr=["id=12313"];
+		// var obj={
+		// 	id:"123"
+		// }
+		// let getId=arr[0].split('=');
+		// let oneObj={},keyType;
+		// oneObj[getId[0]]=getId[getId.length-1];
+		// for(var key in oneObj){
+		//   keyType=key;
+		// }
+		// if(keyType==='id'){
+		//    alert('1111')
+		// }else{
+		//   alert('22222')
+		// }
+		var treeList = [{
+			"id": 648,
+			"directoryName": "AI让孩子爱上学习",
+			"parentId": 0,
+			"status": 0,
+			"sort": 0,
+			"type": 1,
+			"courseId": 512,
+			"courseCatalogueList": [{
+				"id": 667,
+				"directoryName": "的身份v",
+				"parentId": 648,
+				"status": 0,
+				"sort": 3,
+				"type": 2,
+				"courseId": 512,
+				"courseCatalogueList": [{
+					"id": 668,
+					"directoryName": "vds",
+					"parentId": 667,
+					"status": 0,
+					"sort": 2,
+					"type": 3,
+					"courseId": 512,
+					"courseCatalogueList": [],
+					"courseResourceId": null
+				}, {
+					"id": 669,
+					"directoryName": "VS的v",
+					"parentId": 667,
+					"status": 0,
+					"sort": 2,
+					"type": 4,
+					"courseId": 512,
+					"courseCatalogueList": [],
+					"courseResourceId": null
+				}, {
+					"id": 678,
+					"directoryName": "任务1",
+					"parentId": 667,
+					"status": 0,
+					"sort": 3,
+					"type": 4,
+					"courseId": 512,
+					"courseCatalogueList": [],
+					"courseResourceId": null
+				}, {
+					"id": 679,
+					"directoryName": "任务2",
+					"parentId": 667,
+					"status": 0,
+					"sort": 4,
+					"type": 4,
+					"courseId": 512,
+					"courseCatalogueList": [],
+					"courseResourceId": null
+				}, {
+					"id": 680,
+					"directoryName": "任务2",
+					"parentId": 667,
+					"status": 0,
+					"sort": 4,
+					"type": 4,
+					"courseId": 512,
+					"courseCatalogueList": [],
+					"courseResourceId": null
+				}],
+				"courseResourceId": null
+			}, {
+				"id": 681,
+				"directoryName": "nljk,hb",
+				"parentId": 648,
+				"status": 0,
+				"sort": 4,
+				"type": 2,
+				"courseId": 512,
+				"courseCatalogueList": [],
+				"courseResourceId": null
+			}],
+			"courseResourceId": null
+		}]
+		var newArr=[];
+		function forTree(treeList) { //遍历树函数
+			for (var i in treeList) { //循环遍历树
+				newArr.push({id:treeList[i].id})
+				if (treeList[i].courseCatalogueList.length>0) {
+					forTree(treeList[i].courseCatalogueList)
+					//如果遍历树结构还有下一级-做操作
+				}else{
+					continue;
+				} 
+			}
+		}
+		forTree(treeList);
+		console.log(newArr);
+		
+		function btn(){
+			window.open('https://view.officeapps.live.com/op/view.aspx?src=file:///F:/AI%E6%95%99%E5%AD%A6%E5%B9%B3%E5%8F%B01.0%E5%BC%80%E5%8F%91%E8%AE%A1%E5%88%92.xlsx');
+		}
+	</script>
+</html>

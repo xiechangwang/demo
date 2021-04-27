@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="./js/jquery.js"></script>
+	<script type="text/javascript">
+		// let url="http://192.168.20.12:3000";
+		// $.ajax({
+		// 	url:url+'/post',
+		// 	type:'POST',
+		// 	data:{
+		// 		name:'aaaa'
+		// 	},
+		// 	success:function(res){
+		// 		console.log(res);
+		// 	}
+		// })	
+		// console.log(Request.form)
+		
+		var arr={"status":0,"msg":"查询成功！","result":{"BigDataFunctionList":[{"functionId":3,"parentId":0,"functionName":"UBT教育项目运营系统","functionUrl":"","userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null},{"functionId":1,"parentId":0,"functionName":"系统设置","functionUrl":"","userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null},{"functionId":4,"parentId":0,"functionName":"余杭区域运营系统","functionUrl":"","userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null},{"functionId":2,"parentId":0,"functionName":"用户报表","functionUrl":null,"userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null},{"functionId":104,"parentId":1,"functionName":"角色管理","functionUrl":"roleAdmin.html","userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null},{"functionId":112,"parentId":1,"functionName":"日志管理","functionUrl":"diaryMsg.html","userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null},{"functionId":101,"parentId":1,"functionName":"机构管理","functionUrl":"organizationMsg.html","userId":null,"functionDesc":null,"functionType":null,"isValid":null,"functionLevel":null,"insertDate":null,"insertBy":null,"updateDate":null,"updateBy":null,"isDelete":null,"role":null}]}}
+		var BList=arr.result.BigDataFunctionList;
+		var CArr=[];
+		for(var i=0;i<BList.length;i++){
+			for(var j=BList.length-1;j>0;j--){
+				if(BList[i].functionId==BList[j].parentId){
+					CArr.push(BList[i]);
+					// CArr[i].chidren=[];
+					// CArr[i].chidren.push(BList[j])
+				}else{
+					// CArr.push(BList[i]);
+				}
+			}
+		}
+		console.log(CArr)
+	</script>
+</html>

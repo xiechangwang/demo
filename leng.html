@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		var a='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+		var b='大大大大撒大所大所大所大所大所大所大所多';
+		function getLength(str){
+			return str.replace(/[\u0391-\uFFE5]/g,"aa").length;
+		}
+		console.log(getLength(a));
+		console.log(getLength(b));
+	</script>
+</html>

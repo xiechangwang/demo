@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link type="text/css" href="./css/element-ui/index.css" />
+		<script src="js/vue.min.js"></script>
+		<script src="js/element-ui/index.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div v-for="(item,index) in formItemList" :key="index">
+				<el-cascader v-model="value" :options="item.contentList" :props="{ expandTrigger: 'hover',label:'comment',value:'comment' }"></el-cascader>
+			</div>
+
+		</div>
+	</body>
+	<script>
+		var formItemList = [{
+			"id": 1292,
+			"formId": null,
+			"itemType": 1,
+			"applyInfo": "手机号",
+			"controlType": 1,
+			"infoLen": 11,
+			"count": null,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": null
+		}, {
+			"id": 1293,
+			"formId": null,
+			"itemType": 2,
+			"applyInfo": "区域",
+			"controlType": 2,
+			"infoLen": 0,
+			"count": null,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": null
+		}, {
+			"id": 1294,
+			"formId": null,
+			"itemType": 3,
+			"applyInfo": "出生日期",
+			"controlType": 4,
+			"infoLen": 0,
+			"count": null,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": null
+		}, {
+			"id": 1295,
+			"formId": null,
+			"itemType": 4,
+			"applyInfo": "邮箱",
+			"controlType": 1,
+			"infoLen": 64,
+			"count": null,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": null
+		}, {
+			"id": 1297,
+			"formId": null,
+			"itemType": 6,
+			"applyInfo": "性别",
+			"controlType": 5,
+			"infoLen": 0,
+			"count": null,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": null
+		}, {
+			"id": 1298,
+			"formId": null,
+			"itemType": 7,
+			"applyInfo": "学段",
+			"controlType": 2,
+			"infoLen": 0,
+			"count": null,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": null
+		}, {
+			"id": 1299,
+			"formId": null,
+			"itemType": 0,
+			"applyInfo": "1",
+			"controlType": 2,
+			"infoLen": 0,
+			"count": 1,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": [{
+				"id": 159,
+				"formId": 76,
+				"itemId": 1299,
+				"parentId": 0,
+				"comment": "上海",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [],
+				"sort": 2
+			}, {
+				"id": 160,
+				"formId": 76,
+				"itemId": 1299,
+				"parentId": 0,
+				"comment": "周口",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [],
+				"sort": 2
+			}, {
+				"id": 161,
+				"formId": 76,
+				"itemId": 1299,
+				"parentId": 0,
+				"comment": "杭州",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [],
+				"sort": 2
+			}]
+		}, {
+			"id": 1300,
+			"formId": null,
+			"itemType": 0,
+			"applyInfo": "2",
+			"controlType": 2,
+			"infoLen": 0,
+			"count": 2,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": [{
+				"id": 162,
+				"formId": 76,
+				"itemId": 1300,
+				"parentId": 0,
+				"comment": "上海",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [{
+					"id": 163,
+					"formId": 76,
+					"itemId": 1300,
+					"parentId": 162,
+					"comment": "杨浦",
+					"isDelete": 0,
+					"creatorId": 379130,
+					"createdTime": "2020-11-20T01:48:55.000+0000",
+					"updatedId": null,
+					"updatedTime": null,
+					"children": null,
+					"sort": null
+				}],
+				"sort": 2
+			}, {
+				"id": 164,
+				"formId": 76,
+				"itemId": 1300,
+				"parentId": 0,
+				"comment": "杭州",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [{
+					"id": 165,
+					"formId": 76,
+					"itemId": 1300,
+					"parentId": 164,
+					"comment": "浙江",
+					"isDelete": 0,
+					"creatorId": 379130,
+					"createdTime": "2020-11-20T01:48:55.000+0000",
+					"updatedId": null,
+					"updatedTime": null,
+					"children": null,
+					"sort": null
+				}],
+				"sort": 2
+			}, {
+				"id": 166,
+				"formId": 76,
+				"itemId": 1300,
+				"parentId": 0,
+				"comment": "河南",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [{
+					"id": 167,
+					"formId": 76,
+					"itemId": 1300,
+					"parentId": 166,
+					"comment": "周口",
+					"isDelete": 0,
+					"creatorId": 379130,
+					"createdTime": "2020-11-20T01:48:55.000+0000",
+					"updatedId": null,
+					"updatedTime": null,
+					"children": null,
+					"sort": null
+				}],
+				"sort": 2
+			}]
+		}, {
+			"id": 1301,
+			"formId": null,
+			"itemType": 0,
+			"applyInfo": "3",
+			"controlType": 2,
+			"infoLen": 0,
+			"count": 3,
+			"isRequired": 1,
+			"isEnable": 1,
+			"sort": null,
+			"signData": "",
+			"creatorId": null,
+			"createdTime": null,
+			"updatedId": null,
+			"updatedTime": null,
+			"isDelete": null,
+			"contentList": [{
+				"id": 168,
+				"formId": 76,
+				"itemId": 1301,
+				"parentId": 0,
+				"comment": "上海",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [{
+					"id": 169,
+					"formId": 76,
+					"itemId": 1301,
+					"parentId": 168,
+					"comment": "杨浦",
+					"isDelete": 0,
+					"creatorId": 379130,
+					"createdTime": "2020-11-20T01:48:55.000+0000",
+					"updatedId": null,
+					"updatedTime": null,
+					"children": [{
+						"id": 170,
+						"formId": 76,
+						"itemId": 1301,
+						"parentId": 169,
+						"comment": "三门",
+						"isDelete": 0,
+						"creatorId": 379130,
+						"createdTime": "2020-11-20T01:48:55.000+0000",
+						"updatedId": null,
+						"updatedTime": null,
+						"children": null,
+						"sort": null
+					}],
+					"sort": null
+				}],
+				"sort": 2
+			}, {
+				"id": 171,
+				"formId": 76,
+				"itemId": 1301,
+				"parentId": 0,
+				"comment": "杭州",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [{
+					"id": 172,
+					"formId": 76,
+					"itemId": 1301,
+					"parentId": 171,
+					"comment": "浙江",
+					"isDelete": 0,
+					"creatorId": 379130,
+					"createdTime": "2020-11-20T01:48:55.000+0000",
+					"updatedId": null,
+					"updatedTime": null,
+					"children": [{
+						"id": 173,
+						"formId": 76,
+						"itemId": 1301,
+						"parentId": 172,
+						"comment": "无锡",
+						"isDelete": 0,
+						"creatorId": 379130,
+						"createdTime": "2020-11-20T01:48:55.000+0000",
+						"updatedId": null,
+						"updatedTime": null,
+						"children": null,
+						"sort": null
+					}],
+					"sort": null
+				}],
+				"sort": 2
+			}, {
+				"id": 174,
+				"formId": 76,
+				"itemId": 1301,
+				"parentId": 0,
+				"comment": "河南",
+				"isDelete": 0,
+				"creatorId": 379130,
+				"createdTime": "2020-11-20T01:48:55.000+0000",
+				"updatedId": null,
+				"updatedTime": null,
+				"children": [{
+					"id": 175,
+					"formId": 76,
+					"itemId": 1301,
+					"parentId": 174,
+					"comment": "周口",
+					"isDelete": 0,
+					"creatorId": 379130,
+					"createdTime": "2020-11-20T01:48:55.000+0000",
+					"updatedId": null,
+					"updatedTime": null,
+					"children": [{
+						"id": 176,
+						"formId": 76,
+						"itemId": 1301,
+						"parentId": 175,
+						"comment": "郑州",
+						"isDelete": 0,
+						"creatorId": 379130,
+						"createdTime": "2020-11-20T01:48:55.000+0000",
+						"updatedId": null,
+						"updatedTime": null,
+						"children": null,
+						"sort": null
+					}],
+					"sort": null
+				}],
+				"sort": 2
+			}]
+		}];
+		var app = new Vue({
+			data: {
+				value: [],
+				formItemList: formItemList
+			},
+			created() {
+				var that=this;
+				that.setList();
+				that.$nextTick(function(){
+					console.log(that.formItemList);
+				})
+			},
+			methods:{
+				setList:function(){
+					var that=this;
+					for (var i = 0; i < that.formItemList.length; i++) {
+					    if (that.formItemList[i].itemType == 0 && that.formItemList[i].controlType == 2) {
+							that.digui(that.formItemList[i].contentList);
+						}
+					}
+				},
+				digui:function(list){
+					var that=this;
+					for(var i=0;i<list.length;i++){
+						if(list[i].children&&list[i].children.length>0){
+							that.digui(list[i].children);
+						}else{
+							list[i].children=null;
+						}
+					}
+				}
+			}
+		}).$mount('#app');
+	</script>
+</html>

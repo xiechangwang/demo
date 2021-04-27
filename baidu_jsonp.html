@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<div class="wra">
+		        <input type="text">
+		        <ul></ul>
+		    </div>
+			<script>
+			        var oinput = document.getElementsByTagName('input')[0];
+			        var body = document.getElementsByTagName('body')[0];
+			
+			        oinput.oninput = function () { //监听 input 事件。每次触发，我们就发利用  script标签的 src  发送请求
+			            var oscript = document.createElement('script'); 
+			            oscript.src = 'https://www.baidu.com/sugrec?&prod=pc&wd=' + this.value + '&cb=Exhibition'; //拿到百度接口链接， 删除对我们无用的 参数。
+			                                                              // wd 后面的  是我们的 词  cb 后面 是我们的下面的函数名。注意这里的函数名，要字符串
+			            body.appendChild(oscript);
+			            oscript.remove();           // 每次发送完数据后， 把 script标签给删除，不然每发送一次，就 创建一个标签， 等下页面会有很多 script标签
+			        }
+			
+			        function Exhibition(data) {
+			            var g = data.g;
+			            var str = '';
+			            var oUl = document.getElementsByTagName('ul')[0];
+			            if (g) {
+			                oUl.style.display = 'block';
+			                g.forEach(function (ele, index) {
+			                    str += '<li>' + ele.q + '</li>'  //拿到数据  遍历它，然后添加到  li标签
+			                })
+			                oUl.innerHTML = str;
+			            }
+			        }
+			    </script>
+	</body>
+</html>

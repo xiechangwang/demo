@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./css/element-ui/index.css" />
+		<script src="./js/jquery.js"></script>
+		<script src="./js/vue.min.js"></script>
+		<script src="js/element-ui/index.js"></script>
+		<style>
+		  .avatar-uploader .el-upload {
+		    border: 1px dashed #d9d9d9;
+		    border-radius: 6px;
+		    cursor: pointer;
+		    position: relative;
+		    overflow: hidden;
+		  }
+		  .avatar-uploader .el-upload:hover {
+		    border-color: #409EFF;
+		  }
+		  .avatar-uploader-icon {
+		    font-size: 28px;
+		    color: #8c939d;
+		    width: 178px;
+		    height: 178px;
+		    line-height: 178px;
+		    text-align: center;
+		  }
+		  .avatar {
+		    width: 178px;
+		    height: 178px;
+		    display: block;
+		  }
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false" multiple :before-upload="handleBefore"
+			 :on-success="handleSuccess" :on-error="handleError" :file-list="fileList">
+				<el-progress v-if="loading" type="circle" :color="colors" :percentage="percentage"></el-progress>
+				<img v-else-if="imageUrl" :src="imageUrl" @click="getToken" class="avatar">
+				<i v-else class="el-icon-plus avatar-uploader-icon" @click="getToken"></i>
+			</el-upload>
+		</div>
+	</body>
+	<script>
+		var vm = new Vue({
+			data: function() {
+				return {
+					fileList: [],
+					colors: [{
+							color: '#f56c6c',
+							percentage: 20
+						},
+						{
+							color: '#e6a23c',
+							percentage: 40
+						},
+						{
+							color: '#5cb87a',
+							percentage: 60
+						},
+						{
+							color: '#1989fa',
+							percentage: 80
+						},
+						{
+							color: '#6f7ad3',
+							percentage: 100
+						}
+					],
+					percentage: 0,
+					loading: false,
+					interval: null,
+					imageUrl:null,
+					domain:null
+				}
+			},
+			methods: {
+				getToken:function(){
+					// var that=this;
+					// var QN=that.QiNiuToken();
+					// var domain={
+					// 	key:QN["Key"],
+					// 	token:QN["Token"]
+					// }
+					// that.domain=domain;
+				},
+				handleBefore: function(file) {
+					console.log(file)
+					//获取文件大小设置上传进度条速度
+					var fileSizeMsg =window.parseFloat(((file.size / (1024 * 1024))).toFixed(2));
+					// if(file.size < 1048576){	//KB
+					// 	fileSizeMsg = window.parseFloat(((file.size / 1024*1024)).toFixed(2))/;
+					// }else if(file.size > 1048576 && file.size < 1073741824){  //MB
+					// 	fileSizeMsg = window.parseFloat(((file.size / (1024 * 1024))).toFixed(2));
+					// }else if (file.size > 1073741824 && file.size < 1099511627776){	//GB
+					// 	fileSizeMsg = window.parseFloat(((file.size / (1024 * 1024 * 1024))).toFixed(2));
+					// }
+					var that = this;
+					var endPro = 90;
+					that.loading = true;
+					that.interval = setInterval(function() {
+						if (that.percentage < endPro) {
+							that.percentage++;
+						} else {
+							clearInterval(that.interval);
+						}
+					}, fileSizeMsg<1?10:fileSizeMsg)
+				},
+				handleSuccess: function(response, file, fileList) {
+					var that = this;
+					that.percentage = 100;
+					that.$message({
+						type: "success",
+						message: "上传成功！",
+						duration: 1500,
+						onClose: function() {
+							that.loading = false;
+							that.percentage = 0 ;
+							clearInterval(that.interval);
+							that.imageUrl = URL.createObjectURL(file.raw);
+						}
+					})
+				},
+				handleError: function() {
+					var that = this;
+					clearInterval(that.interval);
+					that.$message({
+						type: "error",
+						message: "上传失败！",
+						duration: 1500,
+						onClose: function() {
+							that.percentage = 0 ;
+							that.loading = false;
+						}
+					})
+				},
+				QiNiuToken:function(){
+				   var qiNiuToken= {};
+				     AjaxSync('/qiniuFile/getToken', {}, function (res) {
+						if (res.status == 0) {
+						    qiNiuToken["Key"] = res.result.key;
+				            qiNiuToken["Token"] = res.result.token;
+						  }
+					   }, function (err) {
+					});
+				    return qiNiuToken;
+				}
+			}
+		}).$mount('#app')
+		
+		var AjaxSync = function (url, data, successfn, errorfn) {
+			data = (data == null || data == "" || typeof (data) == "undefined") ? { "date": new Date().getTime() } : data;
+			url = 'https://fcc.qingsaishi.cn/' + url;	//测试接口
+			$.ajax({
+				headers: {
+					"Content-Type": "application/json",
+				},
+				dataType: "json",
+				url: url,
+				async: false, //true:异步,false:同步
+				data: JSON.stringify(data),
+				type: "post",
+				timeout: 20 * 1000,  //请求时间
+				complete: function () {
+					//请求完成的处理 
+				},
+				success: function (res) {
+					successfn(res)
+				}, //请求成功
+				error: function (err) {
+					// console.log("Error");
+					errorfn(err)
+				}
+			});
+		
+		}
+	</script>
+</html>

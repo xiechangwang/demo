@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		 .box {
+			height:123px;
+			padding:10px;
+			margin-top:10px;
+			-moz-page-break-inside:avoid;
+			-webkit-column-break-inside:avoid;
+			break-inside:avoid;
+			border:1px solid #000;
+			background:#909090;
+		}
+		.spe1 {
+			height:450px;
+		}
+		.spe2 {
+			height:450px;
+		}
+		.spe3 {
+			height:450px;
+		}
+		.box-wrapper {
+			-moz-column-count:2;
+			/* Firefox */
+		    -webkit-column-count:2;
+			/* Safari 和 Chrome */
+		        column-count:2;
+			-moz-column-gap:10px;
+			-webkit-column-gap:10px;
+			column-gap:10px;
+		}
+
+		
+	</style>
+	<body>
+		<div class="box-wrapper">
+		    <div style="margin-top:0px" class="box"></div>
+		    <div class="box spe1"></div>
+		    <div class="box spe"></div>
+		    <div class="box spe2"></div>
+		    <div class="box spe"></div>
+		    <div class="box"></div>
+		    <div class="box"></div>
+		    <div class="box spe3"></div>
+		    <div class="box spe"></div>
+		</div>
+	</body>
+</html>

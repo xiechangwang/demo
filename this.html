@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button type="button" @click="fn">btn</button>
+		</div>
+	</body>
+	<script src="./js/vue.min.js"></script>
+	<script>
+		// var a = 1
+		// var obj1 = {
+		//     a:2,
+		//     fn:function(){
+		//         console.log(this);
+		// 		var fn1=function(){
+		// 			console.log(this);
+		// 		}
+		// 		fn1.call(obj1);
+		//     }
+		// }
+		// var f2=obj1.fn;
+		// f2();
+		// obj1.fn()
+		var vm=new Vue({
+			data:{},
+			created:function(){
+				this.fn1();	
+			},
+			methods:{
+				fn:function(){
+					console.log(this)
+				},
+				fn1:function(){
+					console.log(this);
+					function fn2(){
+						console.log(this)
+					};
+					fn2.call(this);
+				}
+				
+			}
+		}).$mount('#app');
+	</script>
+</html>

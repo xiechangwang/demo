@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		a();
+		async function a(){
+			var b=await bFun();
+			console.log(b);
+			var c=await cFun();
+			console.log(c+b);
+		}
+		function bFun(){
+			return new Promise(function(reslove,reject){
+				setTimeout(()=>{
+					reslove(1+10)
+				},5000)
+			})
+		}
+		function cFun(){
+			return 2*5;
+		}
+	</script>
+</html>

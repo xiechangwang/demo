@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body style="background: #2B2938;">
+		<div>
+			<button type="button" onclick="download()">down</button>
+		</div>
+		<span>44564564564654564564564654564</span>
+	</body>
+	<script type="text/javascript">
+		function download(){
+			var activeObj = new ActiveXObject('WScript.shell');
+			                var para = "C:\Users\c\Documents\HBuilderProjects\demo\files\CentraliedControl-x64-Setup-20190702104605.exe";
+			                activeObj.exec(para);
+			// window.open('./files/CentraliedControl-x64-Setup-20190702104605.exe');
+
+		}
+	</script>
+</html>
